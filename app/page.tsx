@@ -35,11 +35,15 @@ export default function Page() {
     inputValue,
     setIsModalOpen,
     inputRef,
+    activeCardsComponent,
+    activeTabsComponent,
+    activeMoreStepperComponent
+
   } = MainPageHook();
 
   return (
     <div className="ps-64 pt-20">
-      <h3 className="text-2xl font-semibold flex flex-row items-center mb-4">
+      <h3 className="text-4xl font-semibold flex flex-row items-center mb-4">
         <CiFaceSmile /> Page
       </h3>
 
@@ -52,7 +56,7 @@ export default function Page() {
           <div className="w-5 h-5 flex justify-center items-center">
             <button
               type="button"
-              className={`inline-flex justify-center items-center w-5 h-5 rounded-md border border-gray-300 shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-0 ${
+              className={`inline-flex justify-center ease-in items-center w-5 h-5 rounded-md border border-gray-300 shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-0 ${
                 isHovered || isDropdownOpen ? "visible" : "invisible"
               }`}
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -107,7 +111,11 @@ export default function Page() {
 
               <div className="max-h-80 overflow-y-auto">
                 {filteredOptions.length > 0 && (
-                  filteredOptions.map((option, index) => (
+                  <>
+                    <div className="px-4 py-4 text-xs text-gray-500 uppercase border-t border-gray-300">
+                    Basic Options
+                  </div>
+                 { filteredOptions.map((option, index) => (
                     <button
                       key={`option-${index}`}
                       onClick={() => handleOptionClick(option)}
@@ -117,12 +125,13 @@ export default function Page() {
                       {option.icon}
                       {option.label}
                     </button>
-                  ))
+                  ))}
+                  </>
                 )  }
 
                 {allAdvancedOptions.length > 0 && (
                   <>
-                    <div className="px-4 py-2 text-xs text-gray-500 uppercase border-t border-gray-300">
+                    <div className="px-4 py-4 text-xs text-gray-500 uppercase border-t border-gray-300">
                       Advanced Options
                     </div>
                     {allAdvancedOptions.map((option, index) => (
@@ -141,7 +150,7 @@ export default function Page() {
 
                 {allDiscoverIntegration.length > 0 && (
                   <>
-                    <div className="px-4 py-2 text-xs text-gray-500 uppercase border-t border-gray-300">
+                    <div className="px-4 py-4 text-xs text-gray-500 uppercase border-t border-gray-300">
                       Discover Integrations
                     </div>
                     {allDiscoverIntegration.map((option, index) => (
@@ -159,7 +168,7 @@ export default function Page() {
                 )}
                 {allEmbeded.length > 0 && (
                   <>
-                    <div className="px-4 py-2 text-xs text-gray-500 uppercase border-t border-gray-300">
+                    <div className="px-4 py-4 text-xs text-gray-500 uppercase border-t border-gray-300">
                       EMBEDS
                     </div>
                     {allEmbeded.map((option, index) => (
@@ -183,12 +192,20 @@ export default function Page() {
 
       <div className="max-w-6xl mx-auto p-6">
         {activeComponent === "table" && <EditableTable />}
-        {activeComponent === "cards" && <CardGrid />}
-        {activeComponent === "tabs" && <Tabs />}
+      </div>
+      <div className="max-w-6xl mx-auto p-6">
+        {activeCardsComponent === "cards" && <CardGrid />}
+      
+      </div>
+      <div className="max-w-6xl mx-auto p-6">
+        {activeTabsComponent === "tabs" && <Tabs />}
+      
       </div>
       <div className="max-w-6xl mx-auto p-6">
         {activeMoreComponent === "expandable" && <Expandable />}
-        {activeMoreComponent === "stepper" && <Stepper />}
+      </div>
+      <div className="max-w-6xl mx-auto p-6">
+        {activeMoreStepperComponent === "stepper" && <Stepper />}
       </div>
 
       <div className="mt-2 ms-3 mb-10">{renderListItems()}</div>

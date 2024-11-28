@@ -77,9 +77,9 @@ export default function Tabs() {
               onDragStart={() => handleDragStart(tab.id)}
               onDragOver={(e) => handleDragOver(e, tab.id)}
               onDragEnd={handleDragEnd}
-              className={`group flex items-center justify-between cursor-move border px-1 py-2 rounded-sm ${
+              className={`group flex items-center justify-between cursor-move border px-4 py-2 rounded-sm ${
                 activeTab === tab.id
-                  ? "bg-gray-600 text-white"
+                  ? "bg-gray-400 text-white"
                   : "hover:bg-gray-100"
               }`}
             >

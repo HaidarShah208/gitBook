@@ -21,10 +21,18 @@ function MainPageHook() {
     "files"
   );
   const [activeMoreComponent, setActiveMoreComponent] = useState<
-    "expandable" | "stepper" | null
+    "expandable" |  null
+  >(null);
+  const [activeMoreStepperComponent, setActiveMoreStepperComponent] = useState<
+     "stepper" | null
   >(null);
   const [activeComponent, setActiveComponent] = useState<
-    "table" | "cards" | "tabs" | null
+    "table"  | null
+  >(null);
+  const [activeTabsComponent, setActiveTabsComponent] = useState<
+    "tabs"  | null
+  >(null);
+  const [activeCardsComponent, setActiveCardsComponent] = useState< "cards"| null
   >(null);
 
   const [currentStyle, setCurrentStyle] = useState<string>("Paragraph");
@@ -55,11 +63,28 @@ function MainPageHook() {
     };
   }, []);
   useEffect(() => {
-    setFilteredOptions(
-      initialOptions.filter((option) =>
-        option.label.toLowerCase().includes(searchValue.toLowerCase())
-      )
+    const searchTerm = searchValue.toLowerCase().trim();
+    
+    const filteredInitialOptions = initialOptions.filter(option => 
+      option.label.toLowerCase().includes(searchTerm)
     );
+
+    const filteredAdvancedOptions = advancedOptions.filter(option => 
+      option.label.toLowerCase().includes(searchTerm)
+    );
+
+    const filteredDiscoverOptions = discoverIntegration.filter(option => 
+      option.label.toLowerCase().includes(searchTerm)
+    );
+
+    const filteredEmbeddedOptions = EmbedsWithIcons.filter(option => 
+      option.label.toLowerCase().includes(searchTerm)
+    );
+
+    setFilteredOptions(filteredInitialOptions);
+    setAllAdvancedOptions(filteredAdvancedOptions);
+    setAlldiscoverIntegration(filteredDiscoverOptions);
+    setAllEmbeded(filteredEmbeddedOptions);
   }, [searchValue]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -136,13 +161,13 @@ function MainPageHook() {
     } else if (option.label === "Table") {
       setActiveComponent("table");
     } else if (option.label === "Cards") {
-      setActiveComponent("cards");
+      setActiveCardsComponent("cards");
     } else if (option.label === "Tabs") {
-      setActiveComponent("tabs");
+      setActiveTabsComponent("tabs");
     } else if (option.label === "Expandable") {
       setActiveMoreComponent("expandable");
     } else if (option.label === "Stepper") {
-      setActiveMoreComponent("stepper");
+      setActiveMoreStepperComponent("stepper");
     } else if (
       [
         "Arcade",
@@ -310,6 +335,9 @@ function MainPageHook() {
     inputValue,
     setIsModalOpen,
     inputRef,
+    activeCardsComponent,
+    activeTabsComponent,
+    activeMoreStepperComponent
   };
 }
 
