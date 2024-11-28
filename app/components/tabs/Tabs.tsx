@@ -104,7 +104,7 @@ export default function Tabs() {
             onClick={addTab}
             className="flex items-center justify-center w-5 ms-1 h-5  bg-gray-200 hover:bg-gray-300 rounded-full transition"
           >
-            <Plus className="w-5 h-5 text-gray-600" />
+            <Plus className="w-3 h-3 text-gray-600" />
           </button>
         </div>
       </div>

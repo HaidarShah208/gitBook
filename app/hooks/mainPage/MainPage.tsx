@@ -212,9 +212,9 @@ function MainPageHook() {
   const getInputClassName = () => {
     switch (currentStyle) {
       case "Heading 1":
-        return "text-3xl font-bold";
+        return "text-5xl font-bold";
       case "Heading 2":
-        return "text-2xl font-semibold";
+        return "text-3xl font-semibold";
       case "Heading 3":
         return "text-xl font-semibold";
       case "Unordered list":
@@ -245,7 +245,7 @@ function MainPageHook() {
           prefix = ` •  `;
           break;
         case "ordered":
-          className = "list-decimal list-inside";
+          className = "list-decimal list-inside  ";
           prefix = `${index + 1}. `;
           break;
         case "task":

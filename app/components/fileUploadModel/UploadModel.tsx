@@ -113,7 +113,7 @@ export default function FileUploadModal({ isOpen, onClose, mode }: FileUploadMod
       <div className="p-6">
         <div
           className={`relative h-48 ${
-            dragActive ? 'border-indigo-600' : 'border-gray-300'
+            dragActive ? 'border-gray-600' : 'border-gray-300'
           } border-2 border-dashed rounded-lg transition-colors duration-300 ease-in-out`}
           onDragEnter={handleDrag}
           onDragLeave={handleDrag}
@@ -140,7 +140,7 @@ export default function FileUploadModal({ isOpen, onClose, mode }: FileUploadMod
             <button
               type="button"
               onClick={onButtonClick}
-              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-gray-600 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600"
             >
               Choose {mode === 'images' ? 'Image' : 'Files'}
             </button>
@@ -180,8 +180,8 @@ export default function FileUploadModal({ isOpen, onClose, mode }: FileUploadMod
                           onClick={() => setActiveTab('files')}
                           className={`${
                             activeTab === 'files'
-                              ? 'border-indigo-500 text-indigo-600'
-                              : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                              ? 'border-gray-600 text-gray-700'
+                              : 'border-transparent  text-gray-500 hover:text-gray-700 hover:border-gray-300'
                           } w-1/2 py-4 px-1 text-center border-b-2 font-medium text-sm`}
                         >
                           Files
@@ -190,8 +190,8 @@ export default function FileUploadModal({ isOpen, onClose, mode }: FileUploadMod
                           onClick={() => setActiveTab('url')}
                           className={`${
                             activeTab === 'url'
-                              ? 'border-indigo-500 text-indigo-600'
-                              : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                              ? 'border-gray-600 text-gray-600'
+                              : 'border-transparent text-gray-500 hover:text-gray-700 focus:outline-slate-700 focus:ring-gray-600 hover:border-gray-300'
                           } w-1/2 py-4 px-1 text-center border-b-2 font-medium text-sm`}
                         >
                           URL
@@ -208,14 +208,13 @@ export default function FileUploadModal({ isOpen, onClose, mode }: FileUploadMod
             <button
               type="button"
               onClick={() => {
-                // Handle file upload or URL embedding here
                 onClose()
               }}
               disabled={!isUploadActive}
               className={`w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-base font-medium text-white sm:ml-3 sm:w-auto sm:text-sm ${
                 isUploadActive
-                  ? 'bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
-                  : 'bg-indigo-400 cursor-not-allowed'
+                  ? 'bg-gray-600 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600'
+                  : 'bg-gray-600 cursor-not-allowed'
               }`}
             >
               {mode === 'embed' ? 'Insert' : 'Upload'}
@@ -223,7 +222,7 @@ export default function FileUploadModal({ isOpen, onClose, mode }: FileUploadMod
             <button
               type="button"
               onClick={onClose}
-              className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+              className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
             >
               Cancel
             </button>

@@ -38,7 +38,7 @@ export default function Page() {
   } = MainPageHook();
 
   return (
-    <div className="ps-96 pt-20">
+    <div className="ps-64 pt-20">
       <h3 className="text-2xl font-semibold flex flex-row items-center mb-4">
         <CiFaceSmile /> Page
       </h3>
@@ -106,7 +106,7 @@ export default function Page() {
               </div>
 
               <div className="max-h-80 overflow-y-auto">
-                {filteredOptions.length > 0 ? (
+                {filteredOptions.length > 0 && (
                   filteredOptions.map((option, index) => (
                     <button
                       key={`option-${index}`}
@@ -118,9 +118,7 @@ export default function Page() {
                       {option.label}
                     </button>
                   ))
-                ) : (
-                  <p className="text-sm text-center pb-2">No results found</p>
-                )}
+                )  }
 
                 {allAdvancedOptions.length > 0 && (
                   <>
@@ -193,7 +191,7 @@ export default function Page() {
         {activeMoreComponent === "stepper" && <Stepper />}
       </div>
 
-      <div className="mt-4">{renderListItems()}</div>
+      <div className="mt-2 ms-3 mb-10">{renderListItems()}</div>
       <FileUploadModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
