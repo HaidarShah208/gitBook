@@ -14,7 +14,7 @@ export default function Page() {
     isDropdownOpen,
     filteredOptions,
     renderListItems,
-    getInputClassName,
+    // getInputClassName,
     getPlaceholder,
     handleInputChange,
     handleInputKeyDown,
@@ -37,8 +37,12 @@ export default function Page() {
     inputRef,
     activeCardsComponent,
     activeTabsComponent,
-    activeMoreStepperComponent
-
+    activeMoreStepperComponent,
+    editors,
+    handleEditorChange,
+    handleEditorFocus,
+    renderEditor,
+    activeEditorIndex,
   } = MainPageHook();
 
   return (
@@ -84,7 +88,7 @@ export default function Page() {
             <input
               ref={inputRef}
               type="text"
-              className={`flex-grow border-0 bg-transparent focus:outline-none border-b-0 ${getInputClassName()}`}
+              className={`flex-grow border-0 bg-transparent focus:outline-none border-b-0 `}
               placeholder={getPlaceholder()}
               value={inputValue}
               onChange={handleInputChange}
@@ -113,21 +117,21 @@ export default function Page() {
                 {filteredOptions.length > 0 && (
                   <>
                     <div className="px-4 py-4 text-xs text-gray-500 uppercase border-t border-gray-300">
-                    Basic Options
-                  </div>
-                 { filteredOptions.map((option, index) => (
-                    <button
-                      key={`option-${index}`}
-                      onClick={() => handleOptionClick(option)}
-                      className="flex items-center gap-3 w-full text-left px-4 py-2 text-sm text-gray-900 hover:bg-gray-100 hover:text-gray-900"
-                      role="menuitem"
-                    >
-                      {option.icon}
-                      {option.label}
-                    </button>
-                  ))}
+                      Basic Options
+                    </div>
+                    {filteredOptions.map((option, index) => (
+                      <button
+                        key={`option-${index}`}
+                        onClick={() => handleOptionClick(option)}
+                        className="flex items-center gap-3 w-full text-left px-4 py-2 text-sm text-gray-900 hover:bg-gray-100 hover:text-gray-900"
+                        role="menuitem"
+                      >
+                        {option.icon}
+                        {option.label}
+                      </button>
+                    ))}
                   </>
-                )  }
+                )}
 
                 {allAdvancedOptions.length > 0 && (
                   <>
@@ -190,16 +194,21 @@ export default function Page() {
         </div>
       </div>
 
+      <div className="mt-4">
+        {editors.map((editor, index) => (
+          <div key={index} className="mb-4">
+            {renderEditor(editor, index)}
+          </div>
+        ))}
+      </div>
       <div className="max-w-6xl mx-auto p-6">
         {activeComponent === "table" && <EditableTable />}
       </div>
       <div className="max-w-6xl mx-auto p-6">
         {activeCardsComponent === "cards" && <CardGrid />}
-      
       </div>
       <div className="max-w-6xl mx-auto p-6">
         {activeTabsComponent === "tabs" && <Tabs />}
-      
       </div>
       <div className="max-w-6xl mx-auto p-6">
         {activeMoreComponent === "expandable" && <Expandable />}
